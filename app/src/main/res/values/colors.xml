@@ -7,4 +7,5 @@
 
     <color name="black">#A4000000</color>
     <color name="grey">#64000000</color>
+    <color name="border_line">#22000000</color>
 </resources>

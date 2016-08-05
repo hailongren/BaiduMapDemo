@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.bearapp.baidumapdemo.MainActivity">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.bearapp.baidumapdemo.MainActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
             android:id="@+id/mapView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clickable="true" />
+            android:clickable="true"/>
 
         <ImageView
             android:id="@+id/ivGetLoc"
@@ -25,7 +25,7 @@
             android:layout_margin="5dp"
             android:padding="5dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/icon_get_loc" />
+            android:src="@drawable/icon_get_loc"/>
 
 
         <ImageView
@@ -33,7 +33,7 @@
             android:layout_height="20dp"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
-            android:src="@drawable/icon_geo" />
+            android:src="@drawable/icon_geo"/>
 
     </FrameLayout>
 
@@ -47,7 +47,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:cacheColorHint="@android:color/transparent"
-            android:divider="@null"
+            android:divider="@color/border_line"
+            android:dividerHeight="1dp"
             android:listSelector="@android:color/transparent">
 
         </ListView>
@@ -58,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone" />
+            android:visibility="gone"/>
 
     </FrameLayout>
 

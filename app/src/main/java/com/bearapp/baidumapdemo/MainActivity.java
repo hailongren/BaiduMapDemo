@@ -1,19 +1,21 @@
 package com.bearapp.baidumapdemo;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Point;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.mapapi.map.BaiduMap;
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         ivGetLoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LocationService.getLocation(getApplicationContext());
+                getCurrentLocation();
             }
         });
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -120,8 +122,6 @@ public class MainActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Utils.ACTION_LOCATION)) {
                 mLocation = intent.getParcelableExtra(Utils.KEY_LOCATION);
-                String loca = Utils.getLocationStr(mLocation);
-                Toast.makeText(getApplicationContext(), loca, Toast.LENGTH_SHORT).show();
                 // 构造定位数据
                 MyLocationData locData = new MyLocationData.Builder()
                         .accuracy(mLocation.getRadius())
@@ -180,6 +180,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         registerReceiver();
+        getCurrentLocation();
+    }
+
+
+    private void getCurrentLocation() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    0);
+            return;
+        }
         LocationService.getLocation(getApplicationContext());
     }
 
